@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publications · TaG Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --bg:#fff; --bg2:#fff8f9; --bg3:#fdeef1; --border:#f3d6dc;
+      --accent:#d9547a; --accent-light:#fff0f3; --accent-mid:#f7c5d0;
+      --text:#1a0a0e; --sub:#6b3a47; --muted:#c4909f; --nav-h:68px;
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+    nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:100;}
+    .nav-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.35rem;color:var(--accent);text-decoration:none;}
+    .nav-links{display:flex;gap:32px;}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--sub);text-decoration:none;transition:color .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+    .page-hero{padding:120px 60px 64px;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,#f3c0cb 1px,transparent 1px);background-size:28px 28px;opacity:.3;pointer-events:none;}
+    .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:16px;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .page-title{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:-.02em;color:var(--text);line-height:1;}
+    .page-title span{color:var(--accent);}
+    .page-desc{max-width:560px;margin-top:18px;font-size:.97rem;line-height:1.85;color:var(--sub);}
+
+    main{padding:72px 60px;}
+
+    /* Filter bar */
+    .filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:44px;}
+    .filter-btn{padding:8px 18px;border-radius:100px;border:1.5px solid var(--border);background:transparent;font-size:.8rem;font-weight:600;color:var(--sub);cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;}
+    .filter-btn:hover,.filter-btn.active{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+    /* Year group */
+    .year-group{margin-bottom:52px;}
+    .year-group:last-child{margin-bottom:0;}
+    .year-header{
+      font-family:'Playfair Display',serif;font-weight:800;font-size:2rem;
+      color:var(--accent);margin-bottom:20px;
+      display:flex;align-items:center;gap:14px;
+    }
+    .year-header::after{content:'';flex:1;height:1px;background:var(--border);}
+
+    .pub-card{
+      background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;
+      padding:24px 26px;margin-bottom:14px;
+      display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;
+      transition:border-color .2s,box-shadow .2s,transform .2s;
+    }
+    .pub-card:hover{border-color:var(--accent);box-shadow:0 6px 24px rgba(217,84,122,.1);transform:translateY(-2px);}
+    .pub-title{font-weight:700;font-size:.97rem;margin-bottom:6px;line-height:1.45;}
+    .pub-authors{font-size:.82rem;color:var(--muted);margin-bottom:8px;}
+    .pub-venue-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .pub-venue{font-size:.79rem;font-weight:600;color:var(--sub);}
+    .pub-badge{font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap;}
+    .badge-journal{background:#fce8ef;color:#c0375d;}
+    .badge-conference{background:#e8f4fd;color:#1d6fa4;}
+    .badge-workshop{background:#fef3e8;color:#b06a1a;}
+    .pub-links{display:flex;gap:8px;margin-top:12px;}
+    .pub-links a{font-size:.74rem;font-weight:600;color:var(--accent);text-decoration:none;padding:4px 12px;border:1px solid var(--accent-mid);border-radius:100px;transition:background .2s,color .2s;}
+    .pub-links a:hover{background:var(--accent);color:#fff;}
+    .pub-card-right{display:flex;align-items:flex-start;}
+
+    footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--bg2);}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.05rem;color:var(--accent);}
+    .footer-copy{font-size:.76rem;color:var(--muted);}
+
+    @media(max-width:768px){
+      nav,main,footer{padding-left:22px;padding-right:22px;}
+      .page-hero{padding-left:22px;padding-right:22px;}
+      .pub-card{grid-template-columns:1fr;}
+      footer{flex-direction:column;gap:10px;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span style="color:#111">T</span><span style="color:#f5c400">a</span><span style="color:#2563eb">G</span> Lab</a>
+  <div class="nav-links">
+    <a href="../index.html#research">Research</a>
+    <a href="people.html">People</a>
+    <a href="publications.html" class="active">Publications</a>
+    <a href="../index.html#news">News</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Publications</div>
+  <h1 class="page-title"><span>Publications</span></h1>
+  <p class="page-desc">Research papers, conference proceedings, and journal articles published by TaG Lab members.</p>
+</div>
+
+<main>
+  <div class="filter-bar">
+    <button class="filter-btn active">All</button>
+    <button class="filter-btn">Journal</button>
+    <button class="filter-btn">Conference</button>
+    <button class="filter-btn">Workshop</button>
+  </div>
+
+  <div class="year-group">
+    <div class="year-header">2025</div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Paper Title Goes Here — Replace with actual title</div>
+        <div class="pub-authors">Author A, Author B, Author C</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">IEEE Transactions on ...</span>
+          <span class="pub-badge badge-journal">Journal</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+          <a href="#">BibTeX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-header">2024</div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Paper Title Goes Here — Replace with actual title</div>
+        <div class="pub-authors">Author A, Author B</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">CHI 2024 — ACM Conference on Human Factors</span>
+          <span class="pub-badge badge-conference">Conference</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+          <a href="#">BibTeX</a>
+        </div>
+      </div>
+    </div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Paper Title Goes Here — Replace with actual title</div>
+        <div class="pub-authors">Author A, Author B, Author C</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">UIST 2024</span>
+          <span class="pub-badge badge-conference">Conference</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">DOI</a>
+          <a href="#">BibTeX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="year-group">
+    <div class="year-header">2023</div>
+    <div class="pub-card">
+      <div>
+        <div class="pub-title">Paper Title Goes Here — Replace with actual title</div>
+        <div class="pub-authors">Author A, Author B</div>
+        <div class="pub-venue-row">
+          <span class="pub-venue">Workshop on ...</span>
+          <span class="pub-badge badge-workshop">Workshop</span>
+        </div>
+        <div class="pub-links">
+          <a href="#">PDF</a>
+          <a href="#">BibTeX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">TaG Lab</div>
+  <div class="footer-copy">© 2025 Technology and Growth Lab · All rights reserved</div>
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

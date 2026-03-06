@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projects · TaG Lab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    :root {
+      --bg:#fff; --bg2:#fff8f9; --bg3:#fdeef1; --border:#f3d6dc;
+      --accent:#d9547a; --accent-light:#fff0f3; --accent-mid:#f7c5d0;
+      --text:#1a0a0e; --sub:#6b3a47; --muted:#c4909f; --nav-h:68px;
+    }
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+    nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);z-index:100;}
+    .nav-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.35rem;color:var(--accent);text-decoration:none;}
+    .nav-links{display:flex;gap:32px;}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--sub);text-decoration:none;transition:color .2s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent);}
+
+    .page-hero{padding:120px 60px 64px;background:var(--bg2);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,#f3c0cb 1px,transparent 1px);background-size:28px 28px;opacity:.3;pointer-events:none;}
+    .breadcrumb{font-size:.78rem;color:var(--muted);margin-bottom:16px;}
+    .breadcrumb a{color:var(--accent);text-decoration:none;}
+    .page-title{font-family:'Playfair Display',serif;font-weight:800;font-size:clamp(2.5rem,6vw,4.5rem);letter-spacing:-.02em;color:var(--text);line-height:1;}
+    .page-title span{color:var(--accent);}
+    .page-desc{max-width:560px;margin-top:18px;font-size:.97rem;line-height:1.85;color:var(--sub);}
+
+    main{padding:72px 60px;}
+
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+
+    .project-card{
+      background:var(--bg2);border:1.5px solid var(--border);border-radius:18px;
+      overflow:hidden;transition:border-color .25s,box-shadow .25s,transform .25s;
+    }
+    .project-card:hover{border-color:var(--accent);box-shadow:0 10px 36px rgba(217,84,122,.13);transform:translateY(-5px);}
+
+    .project-thumb{
+      height:160px;background:linear-gradient(135deg,var(--bg3) 0%,var(--accent-mid) 100%);
+      display:flex;align-items:center;justify-content:center;font-size:3rem;
+      position:relative;
+    }
+    .project-status{
+      position:absolute;top:14px;right:14px;
+      font-size:.68rem;font-weight:700;padding:4px 12px;border-radius:100px;
+    }
+    .status-active{background:#dcfce7;color:#15803d;}
+    .status-completed{background:#f1f5f9;color:#64748b;}
+    .status-ongoing{background:#fef9c3;color:#a16207;}
+
+    .project-body{padding:24px 22px;}
+    .project-title{font-family:'Playfair Display',serif;font-weight:800;font-size:1.05rem;margin-bottom:8px;line-height:1.3;}
+    .project-desc{font-size:.86rem;color:var(--sub);line-height:1.75;margin-bottom:16px;}
+    .project-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;}
+    .project-tag{font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:100px;background:var(--accent-light);color:var(--accent);}
+    .project-meta{display:flex;justify-content:space-between;align-items:center;padding-top:14px;border-top:1px solid var(--border);}
+    .project-period{font-size:.76rem;color:var(--muted);}
+    .project-members{font-size:.76rem;color:var(--sub);font-weight:600;}
+
+    footer{padding:26px 60px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:var(--bg2);}
+    .footer-logo{font-family:'Playfair Display',serif;font-weight:800;font-size:1.05rem;color:var(--accent);}
+    .footer-copy{font-size:.76rem;color:var(--muted);}
+
+    @media(max-width:768px){
+      nav,main,footer{padding-left:22px;padding-right:22px;}
+      .page-hero{padding-left:22px;padding-right:22px;}
+      footer{flex-direction:column;gap:10px;text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo"><span style="color:#111">T</span><span style="color:#f5c400">a</span><span style="color:#2563eb">G</span> Lab</a>
+  <div class="nav-links">
+    <a href="../index.html#research">Research</a>
+    <a href="people.html">People</a>
+    <a href="publications.html">Publications</a>
+    <a href="../index.html#news">News</a>
+    <a href="../index.html#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb"><a href="../index.html">Home</a> / Projects</div>
+  <h1 class="page-title">Active <span>Projects</span></h1>
+  <p class="page-desc">Ongoing and completed research projects at TaG Lab, spanning HCI, UX, and human-technology interaction.</p>
+</div>
+
+<main>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-thumb">
+        🖥️
+        <span class="project-status status-active">Active</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Project Title Goes Here</div>
+        <div class="project-desc">Brief description of the project, its goals, methodology, and expected outcomes. Replace with actual project details.</div>
+        <div class="project-tags">
+          <span class="project-tag">HCI</span>
+          <span class="project-tag">UX</span>
+          <span class="project-tag">Tag 03</span>
+        </div>
+        <div class="project-meta">
+          <div class="project-period">2024 – Present</div>
+          <div class="project-members">3 members</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        🧠
+        <span class="project-status status-active">Active</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Project Title Goes Here</div>
+        <div class="project-desc">Brief description of the project, its goals, methodology, and expected outcomes. Replace with actual project details.</div>
+        <div class="project-tags">
+          <span class="project-tag">Perception</span>
+          <span class="project-tag">Behavior</span>
+        </div>
+        <div class="project-meta">
+          <div class="project-period">2023 – Present</div>
+          <div class="project-members">2 members</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        📱
+        <span class="project-status status-ongoing">Ongoing</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Project Title Goes Here</div>
+        <div class="project-desc">Brief description of the project, its goals, methodology, and expected outcomes. Replace with actual project details.</div>
+        <div class="project-tags">
+          <span class="project-tag">Mobile</span>
+          <span class="project-tag">UX Research</span>
+        </div>
+        <div class="project-meta">
+          <div class="project-period">2024 – 2025</div>
+          <div class="project-members">4 members</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb">
+        🔬
+        <span class="project-status status-completed">Completed</span>
+      </div>
+      <div class="project-body">
+        <div class="project-title">Project Title Goes Here</div>
+        <div class="project-desc">Brief description of the project, its goals, methodology, and expected outcomes. Replace with actual project details.</div>
+        <div class="project-tags">
+          <span class="project-tag">Study</span>
+          <span class="project-tag">Analysis</span>
+        </div>
+        <div class="project-meta">
+          <div class="project-period">2022 – 2023</div>
+          <div class="project-members">3 members</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">TaG Lab</div>
+  <div class="footer-copy">© 2025 Technology and Growth Lab · All rights reserved</div>
+</footer>
+</body>
+</html>
